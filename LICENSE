@@ -13,23 +13,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.advdrop;
-
-import com.github.advdrop.command.DropCommand;
-import lombok.Getter;
-import org.bukkit.plugin.java.JavaPlugin;
-
-public class AdvDrop extends JavaPlugin {
-    @Getter private static AdvDrop plugin;
-    
-    @Override
-    public void onEnable() {
-        plugin = this;
-        
-        this.registerCommands();
-    }
-    
-    private void registerCommands() {
-        this.getCommand("drop").setExecutor(new DropCommand());
-    }
-}
