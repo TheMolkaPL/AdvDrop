@@ -16,10 +16,13 @@
 package com.github.advdrop;
 
 import com.github.advdrop.command.DropCommand;
+import com.github.advdrop.listener.BlockBreakListener;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class AdvDrop extends JavaPlugin {
+
     @Getter private static AdvDrop plugin;
     @Getter private AdvDropManager manager;
     
@@ -27,11 +30,16 @@ public class AdvDrop extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         
-        this.manager = new AdvDropManager(this);
-        this.registerCommands();
+        manager = new AdvDropManager(this);
+        registerCommands();
+        registerListener();
     }
     
     private void registerCommands() {
         this.getCommand("drop").setExecutor(new DropCommand());
+    }
+
+    private void registerListener() {
+        Bukkit.getPluginManager().registerEvents(new BlockBreakListener(this), this);
     }
 }

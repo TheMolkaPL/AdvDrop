@@ -17,9 +17,12 @@ package com.github.advdrop;
 
 import com.github.advdrop.handler.DefaultDropHandler;
 import com.github.advdrop.handler.DropHandler;
+import com.github.advdrop.handler.RandomDropHandler;
 import org.bukkit.Material;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lombok.Getter;
 
@@ -29,6 +32,21 @@ public class AdvDropManager {
 
     public AdvDropManager(AdvDrop plugin) {
         this.defaultDropHandler = new DefaultDropHandler();
+
+        List<RandomDropData> stoneDrops = new ArrayList<>();
+
+        RandomBuilder builder = new RandomBuilder(Material.GOLD_BLOCK);
+        builder.setDefaultChance(50.0);
+        builder.getNeededTools().add(Material.IRON_PICKAXE);
+        builder.setSilkTouchMaterial(Material.BUCKET);
+        RandomDropData data = builder.build();
+
+        stoneDrops.add(data);
+
+        System.out.println(data.getFirstState().toString());
+        materialMap.put(Material.STONE, new RandomDropHandler(stoneDrops));
+
+
     }
 
     public DropHandler getHandler(Material material) {
