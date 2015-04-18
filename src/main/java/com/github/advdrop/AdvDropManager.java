@@ -15,26 +15,31 @@
  */
 package com.github.advdrop;
 
+import com.github.advdrop.handler.DefaultDropHandler;
 import com.github.advdrop.handler.DropHandler;
 import org.bukkit.Material;
 
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Getter;
 
 public class AdvDropManager {
-
-    private Map<Material, DropHandler> materialMap = new HashMap<>();
-    private DropHandler defaultDropHandler;
+    @Getter private final Map<Material, DropHandler> materialMap = new HashMap<>();
+    private final DropHandler defaultDropHandler;
 
     public AdvDropManager(AdvDrop plugin) {
-
+        this.defaultDropHandler = new DefaultDropHandler();
     }
 
     public DropHandler getHandler(Material material) {
-        DropHandler handler = materialMap.get(material);
+        DropHandler handler = this.materialMap.get(material);
         if(handler != null) {
             return handler;
         }
-        return defaultDropHandler;
+        return this.defaultDropHandler;
+    }
+    
+    public void setHandler(Material material, DropHandler handler) {
+        this.materialMap.put(material, handler);
     }
 }

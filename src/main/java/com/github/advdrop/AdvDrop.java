@@ -21,11 +21,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class AdvDrop extends JavaPlugin {
     @Getter private static AdvDrop plugin;
+    @Getter private AdvDropManager manager;
     
     @Override
     public void onEnable() {
         plugin = this;
         
+        this.manager = new AdvDropManager(this);
         this.registerCommands();
     }
     
