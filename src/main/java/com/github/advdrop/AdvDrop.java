@@ -16,10 +16,11 @@
 package com.github.advdrop;
 
 import com.github.advdrop.command.DropCommand;
+import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class AdvDrop extends JavaPlugin {
-    private static AdvDrop plugin;
+    @Getter private static AdvDrop plugin;
     
     @Override
     public void onEnable() {
@@ -30,9 +31,5 @@ public class AdvDrop extends JavaPlugin {
     
     private void registerCommands() {
         this.getCommand("drop").setExecutor(new DropCommand());
-    }
-    
-    public static AdvDrop getPlugin() {
-        return plugin;
     }
 }
