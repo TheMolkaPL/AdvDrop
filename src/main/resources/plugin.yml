@@ -2,3 +2,8 @@ main: com.github.advdrop.AdvDrop
 name: AdvDrop
 version: ${project.version}
 authors: [TheMolkaPL, Thefilippop1PL, kamcio96]
+commands:
+  drop:
+    description: 'Wyswietl aktualny drop itemów z kamienia'
+    aliases: [advdrop, drops, stone, kamien]
+    usage: '/drop [-nogui]'
